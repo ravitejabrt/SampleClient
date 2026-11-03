@@ -25,6 +25,7 @@
   // State Management
   const state = {
     isAuthenticated: false,
+    isSupabaseConnected: false, // Disconnected every time on load/reload
     clients: [],
     settings: {
       currency: '₹',
@@ -620,6 +621,7 @@
   }
 
   function getSupabaseClient() {
+    if (!state.isSupabaseConnected) return null;
     const url = (state.settings.supabaseUrl || SUPABASE_CONFIG.url || '').trim();
     const key = (state.settings.supabaseKey || SUPABASE_CONFIG.anonKey || '').trim();
 
@@ -743,6 +745,7 @@ WHERE id = 'main_store';`;
 
     const provider = state.settings.dbProvider || (state.settings.apiUrl ? 'bigrock' : 'supabase');
     setDbProviderTab(provider);
+    updateSupabaseUiState();
 
     openModal('cloudDatabaseModal');
   }
@@ -905,8 +908,64 @@ WHERE id = 'main_store';`;
     if (configured) {
       el.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span><span class="text-emerald-700 font-semibold">Supabase Connected</span>`;
     } else {
-      el.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span><span class="text-amber-700 font-medium">Supabase Not Connected</span>`;
+      el.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span><span class="text-slate-600 font-medium">Supabase Disconnected</span>`;
     }
+  }
+
+  function updateSupabaseUiState() {
+    const isConn = Boolean(state.isSupabaseConnected && isSupabaseConfigured());
+
+    // 1. Navigation status dot
+    const navDot = document.getElementById('nav-supabase-status-dot');
+    if (navDot) {
+      navDot.className = `w-2 h-2 rounded-full ${isConn ? 'bg-emerald-500 shadow-xs' : 'bg-slate-400'}`;
+      navDot.title = isConn ? 'Connected to Supabase' : 'Disconnected (Local Mode)';
+    }
+
+    // 2. Disconnect button in modal
+    const disconnectBtn = document.getElementById('btn-disconnect-supabase');
+    if (disconnectBtn) {
+      if (isConn) {
+        disconnectBtn.classList.remove('hidden');
+      } else {
+        disconnectBtn.classList.add('hidden');
+      }
+    }
+
+    // 3. Modal status pill
+    const modalBadge = document.getElementById('supabase-modal-status-badge');
+    const modalText = document.getElementById('supabase-modal-status-text');
+    const modalDot = document.getElementById('supabase-modal-status-dot');
+    if (modalBadge && modalText && modalDot) {
+      if (isConn) {
+        modalBadge.className = 'px-2.5 py-1 text-[11px] font-bold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1.5 mb-1.5';
+        modalDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+        modalText.textContent = 'Connected (Sync Active)';
+      } else {
+        modalBadge.className = 'px-2.5 py-1 text-[11px] font-bold rounded-full bg-slate-100 text-slate-600 border border-slate-300 flex items-center gap-1.5 mb-1.5';
+        modalDot.className = 'w-2 h-2 rounded-full bg-slate-400';
+        modalText.textContent = 'Disconnected (Local Mode)';
+      }
+    }
+
+    // 4. Header sync indicator
+    updateSyncIndicator(isConn, isConn ? 'Supabase Synced' : 'Supabase Disconnected');
+  }
+
+  function disconnectSupabase() {
+    state.isSupabaseConnected = false;
+    if (realtimeChannel && supabaseClient) {
+      try {
+        supabaseClient.removeChannel(realtimeChannel);
+      } catch (e) {}
+    }
+    realtimeChannel = null;
+    supabaseClient = null;
+    cloudSyncAvailable = false;
+
+    updateSupabaseUiState();
+    updateSupabaseConnectBanner(true);
+    showToast('Supabase disconnected. Switched to Local Mode.');
   }
 
   async function handleSaveCloudDb(e) {
@@ -923,10 +982,9 @@ WHERE id = 'main_store';`;
 
     supabaseClient = null; // Re-create client with new credentials
     realtimeChannel = null;
+    state.isSupabaseConnected = true; // User explicitly connected!
 
     // Persist settings locally and to server if running.
-    // CRITICAL: DO NOT call saveData() here, because on a new device state.clients is empty!
-    // Calling saveData() would push an empty clients array and erase the Supabase database!
     try {
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
     } catch (err) {}
@@ -934,6 +992,7 @@ WHERE id = 'main_store';`;
 
     closeModal('cloudDatabaseModal');
     updateLoginDbStatus();
+    updateSupabaseUiState();
     showToast('Connecting to Supabase and pulling data...');
 
     // IMMEDIATELY PULL all data from Supabase!
@@ -1073,6 +1132,7 @@ WHERE id = 'main_store';`;
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       updateSyncIndicator(true, `Supabase Synced (${timeStr})`);
       updateLoginDbStatus();
+      updateSupabaseUiState();
     } catch (err) {
       console.warn('Supabase check error:', err);
       if (!silent) updateSyncIndicator(false, 'Supabase Offline ⚠️');
@@ -5567,13 +5627,13 @@ WHERE id = 'main_store';`;
       if (errBox) errBox.classList.add('hidden');
       localStorage.setItem(AUTH_KEY, username);
       state.isAuthenticated = true;
+      state.isSupabaseConnected = false; // Always disconnected by default
       showMainApp();
       loadData();
       updateCurrencySymbols();
+      updateSupabaseUiState();
       showView('dashboard');
       showToast('Welcome back, Admin!');
-      // CRITICAL: Pull latest data from Supabase on login!
-      checkCloudSync(false, { forcePull: true });
     } else {
       if (errBox) {
         errBox.classList.remove('hidden');
@@ -5628,23 +5688,24 @@ WHERE id = 'main_store';`;
 
   // ==================== APP INITIALIZATION ====================
   async function init() {
+    state.isSupabaseConnected = false; // Always disconnected by default every time
     loadData();
     updateCurrencySymbols();
     await loadServerConfig();
     updateLoginDbStatus();
+    updateSupabaseUiState();
 
     const isAuth = checkAuth();
     if (isAuth) {
       showMainApp();
       showView('dashboard');
-      checkCloudSync(false, { forcePull: true });
     } else {
       showLoginScreen();
     }
 
-    // Background auto-sync every 10 seconds to fetch changes from other devices/tabs
+    // Background auto-sync only runs when user has explicitly connected Supabase in this session
     setInterval(() => {
-      if (state.isAuthenticated && typeof checkCloudSync === 'function') {
+      if (state.isAuthenticated && state.isSupabaseConnected && typeof checkCloudSync === 'function') {
         checkCloudSync(true);
       }
     }, 10000);
@@ -5737,6 +5798,8 @@ WHERE id = 'main_store';`;
     setDbProviderTab,
     testCloudDbConnection,
     handleSaveCloudDb,
+    disconnectSupabase,
+    updateSupabaseUiState,
     toggleSettingsDropdown,
     openOverrideMonthModal,
     onOverrideMonthChange,

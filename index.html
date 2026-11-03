@@ -197,6 +197,11 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span class="hidden md:inline">Monthly Matrix</span>
           </button>
+          <button id="nav-supabase" onclick="app.openCloudDatabaseModal()" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5" title="Supabase Cloud Database Settings">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span>Supabase</span>
+            <span id="nav-supabase-status-dot" class="w-2 h-2 rounded-full bg-slate-400" title="Disconnected"></span>
+          </button>
         </nav>
 
         <!-- Action Buttons -->
@@ -2036,14 +2041,20 @@
         <button onclick="app.closeModal('cloudDatabaseModal')" class="text-white/80 hover:text-white text-lg">&times;</button>
       </div>
 
-      <!-- Provider Tabs -->
-      <div class="flex border-b border-slate-200 bg-slate-50 px-6 pt-3 gap-2">
-        <button type="button" id="tab-db-supabase" onclick="app.setDbProviderTab('supabase')" class="px-4 py-2 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 transition flex items-center gap-1.5">
-          <span>⚡</span> <span>Supabase (Recommended)</span>
-        </button>
-        <button type="button" id="tab-db-bigrock" onclick="app.setDbProviderTab('bigrock')" class="px-4 py-2 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-1.5">
-          <span>🐘</span> <span>BigRock MySQL</span>
-        </button>
+      <!-- Provider Tabs & Connection State -->
+      <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 pt-3">
+        <div class="flex gap-2">
+          <button type="button" id="tab-db-supabase" onclick="app.setDbProviderTab('supabase')" class="px-4 py-2 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 transition flex items-center gap-1.5">
+            <span>⚡</span> <span>Supabase</span>
+          </button>
+          <button type="button" id="tab-db-bigrock" onclick="app.setDbProviderTab('bigrock')" class="px-4 py-2 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition flex items-center gap-1.5">
+            <span>🐘</span> <span>BigRock MySQL</span>
+          </button>
+        </div>
+        <div id="supabase-modal-status-badge" class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-slate-100 text-slate-600 border border-slate-300 flex items-center gap-1.5 mb-1.5">
+          <span id="supabase-modal-status-dot" class="w-2 h-2 rounded-full bg-slate-400"></span>
+          <span id="supabase-modal-status-text">Disconnected (Local Mode)</span>
+        </div>
       </div>
 
       <form onsubmit="app.handleSaveCloudDb(event)" class="p-6 space-y-4">
@@ -2105,8 +2116,11 @@
             <button type="button" onclick="app.testCloudDbConnection()" id="cloud-test-btn" class="px-3.5 py-2 text-xs font-bold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-lg transition flex items-center gap-1.5">
               <span>⚡ Test Connection</span>
             </button>
-            <button type="button" onclick="app.manualCloudSync()" class="px-3.5 py-2 text-xs font-bold text-blue-700 bg-blue-100 hover:bg-blue-200 rounded-lg transition flex items-center gap-1.5" title="Push all current local clients and settings to database">
+            <button type="button" onclick="app.manualCloudSync()" id="cloud-sync-btn" class="px-3.5 py-2 text-xs font-bold text-blue-700 bg-blue-100 hover:bg-blue-200 rounded-lg transition flex items-center gap-1.5" title="Push all current local clients and settings to database">
               <span>🔄 Sync Now</span>
+            </button>
+            <button type="button" id="btn-disconnect-supabase" onclick="app.disconnectSupabase()" class="px-3 py-2 text-xs font-bold text-red-700 bg-red-100 hover:bg-red-200 border border-red-200 rounded-lg transition flex items-center gap-1.5 hidden" title="Disconnect from Supabase and stay in Local Mode">
+              <span>🔌 Disconnect</span>
             </button>
           </div>
           <div class="flex gap-2">
