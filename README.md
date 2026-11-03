@@ -46,6 +46,7 @@
    - **100% Offline & Local Storage**: Data is saved directly in your browser.
    - **Backup & Restore**: Export all data to JSON or CSV for Excel, or restore anytime.
    - **Preloaded Demo Data**: Includes realistic sample clients to test and explore immediately.
+   - **All-Device Screen Compatibility**: Seamlessly responsive across smartphones (iOS / Android), tablets, iPads, laptops, and desktop monitors with a dedicated mobile bottom navigation bar and touch-friendly controls.
 
 ---
 
@@ -54,7 +55,7 @@
 You have **two simple options** to run this project:
 
 ### Option 1: Direct in Browser (Zero Installation)
-1. Simply navigate to this folder: `d:\BRT Application\Rahul 2.0`
+1. Simply navigate to this project folder.
 2. **Double-click `index.html`** (or right-click and choose "Open with Google Chrome" / "Microsoft Edge").
 3. The app will launch instantly in your browser!
 
@@ -67,11 +68,13 @@ You have **two simple options** to run this project:
 ## 📂 Project Structure
 
 ```text
-Rahul 2.0/
-├── index.html        # Main HTML application interface & modal dialogues
-├── styles.css        # Clean styles, responsive design, badge colors & print rules
-├── app.js            # Ledger engine, FIFO payment allocation & data management
+Sampleclient/
+├── index.html        # Main HTML application interface & responsive modals
+├── styles.css        # Cross-device styles, touch optimization & print rules
+├── app.js            # Ledger engine, FIFO payment allocation & multi-device sync
 ├── server.js         # Lightweight zero-dependency Node HTTP server
+├── database.json     # Local persistent JSON database with demo data
+├── config.js         # Optional shared Supabase credentials configuration
 ├── start.bat         # 1-click Windows launcher
 ├── package.json      # NPM scripts (npm start)
 └── README.md         # Comprehensive documentation

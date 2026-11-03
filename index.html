@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>ClientLedger Pro - Monthly Recurring Billing & Balance Manager</title>
   
   <!-- Modern Inter Font -->
@@ -44,12 +44,12 @@
   <script src="config.js"></script>
 
   <!-- Custom Styling & Print Rules -->
-  <link rel="stylesheet" href="styles.css?v=3.8">
+  <link rel="stylesheet" href="styles.css?v=3.9">
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col font-sans">
 
   <!-- ==================== LOGIN SCREEN ==================== -->
-  <div id="login-screen" class="min-h-screen w-full flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
+  <div id="login-screen" class="min-h-screen w-full flex items-center justify-center p-3 sm:p-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
     <!-- Subtle Background Glows -->
     <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -57,16 +57,16 @@
     <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden relative z-10 animate-in fade-in zoom-in-95 duration-200">
       
       <!-- Top Brand Header -->
-      <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 text-white text-center">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white shadow-inner font-extrabold text-2xl mb-3 border border-white/20">
+      <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-5 sm:p-6 text-white text-center">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white shadow-inner font-extrabold text-2xl mb-3 border border-white/20">
           ₹
         </div>
-        <h1 class="text-2xl font-black tracking-tight text-white">ClientLedger Pro</h1>
+        <h1 class="text-xl sm:text-2xl font-black tracking-tight text-white">ClientLedger Pro</h1>
         <p class="text-xs text-blue-100 mt-1">Monthly Recurring Billing & Balance Manager</p>
       </div>
 
       <!-- Login Form Body -->
-      <div class="p-6 sm:p-8 space-y-5">
+      <div class="p-5 sm:p-8 space-y-4 sm:space-y-5">
         <div class="text-center space-y-1">
           <h2 class="text-lg font-bold text-slate-900">Sign In to Dashboard</h2>
           <p class="text-xs text-slate-500">Enter your credentials to manage clients and payments</p>
@@ -165,28 +165,28 @@
 
     <!-- Top Navigation Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         
         <!-- Logo & Branding -->
-        <div class="flex items-center space-x-3 cursor-pointer" onclick="app.showView('dashboard')">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 font-bold text-xl">
+        <div class="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer shrink-0" onclick="app.showView('dashboard')">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 font-bold text-lg sm:text-xl">
             ₹
           </div>
           <div>
-            <div class="flex items-center space-x-2">
-              <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">ClientLedger</span>
-              <span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-semibold">Pro</span>
+            <div class="flex items-center space-x-1.5 sm:space-x-2">
+              <span class="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">ClientLedger</span>
+              <span class="bg-blue-100 text-blue-800 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-semibold">Pro</span>
             </div>
-            <p class="text-xs text-slate-500 hidden sm:block">Monthly Recurring Billing & Balance Tracker</p>
+            <p class="text-[11px] text-slate-500 hidden md:block">Monthly Recurring Billing & Balance Tracker</p>
           </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <nav class="flex items-center space-x-1 sm:space-x-2">
+        <!-- Navigation Tabs (Desktop & Tablet) -->
+        <nav class="hidden md:flex items-center space-x-1 sm:space-x-2">
           <button id="nav-dashboard" onclick="app.showView('dashboard')" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-blue-700 bg-blue-50 hover:bg-blue-100 flex items-center space-x-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-            <span class="hidden sm:inline">Dashboard</span>
+            <span>Dashboard</span>
           </button>
           <button id="nav-clients" onclick="app.showView('clients')" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -195,7 +195,7 @@
           </button>
           <button id="nav-matrix" onclick="app.showView('matrix')" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            <span class="hidden md:inline">Monthly Matrix</span>
+            <span>Monthly Matrix</span>
           </button>
           <button id="nav-supabase" onclick="app.openCloudDatabaseModal()" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center space-x-1.5" title="Supabase Cloud Database Settings">
             <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -205,16 +205,16 @@
         </nav>
 
         <!-- Action Buttons -->
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-1.5 sm:space-x-2">
           <!-- Cloud / Local Sync Status Indicator -->
-          <div id="cloud-sync-status" onclick="app.openCloudDatabaseModal()" class="hidden sm:flex items-center gap-1.5 text-[11px] bg-amber-50 text-amber-800 px-2.5 py-1.5 rounded-lg border border-amber-300 cursor-pointer hover:bg-amber-100 transition" title="Click to view/configure Supabase cloud database connection">
+          <div id="cloud-sync-status" onclick="app.openCloudDatabaseModal()" class="hidden xl:flex items-center gap-1.5 text-[11px] bg-amber-50 text-amber-800 px-2.5 py-1.5 rounded-lg border border-amber-300 cursor-pointer hover:bg-amber-100 transition" title="Click to view/configure Supabase cloud database connection">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
             <span class="font-medium">Supabase Not Connected</span>
           </div>
 
           <!-- Currency selector -->
           <div class="relative inline-block text-left">
-            <select id="currency-select" onchange="app.changeCurrency(this.value)" class="text-xs bg-slate-100 hover:bg-slate-200 border-0 rounded-lg py-1.5 px-2.5 font-medium text-slate-700 cursor-pointer focus:ring-2 focus:ring-blue-500">
+            <select id="currency-select" onchange="app.changeCurrency(this.value)" class="text-xs bg-slate-100 hover:bg-slate-200 border-0 rounded-lg py-1.5 px-2 sm:px-2.5 font-medium text-slate-700 cursor-pointer focus:ring-2 focus:ring-blue-500">
               <option value="₹">₹ (INR)</option>
               <option value="$">$ (USD)</option>
               <option value="€">€ (EUR)</option>
@@ -225,7 +225,7 @@
           </div>
 
           <!-- Quick New Client -->
-          <button onclick="app.openModal('addClientModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-lg text-sm font-medium shadow-sm transition-all flex items-center space-x-1.5">
+          <button onclick="app.openModal('addClientModal')" class="bg-blue-600 hover:bg-blue-700 text-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-sm font-medium shadow-sm transition-all flex items-center space-x-1 sm:space-x-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <span class="hidden sm:inline">Add Client</span>
           </button>
@@ -301,13 +301,13 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-6 pb-24 md:pb-8">
 
     <!-- VIEW 1: DASHBOARD -->
     <div id="view-dashboard" class="space-y-6">
       
       <!-- Business Profile & Quick Actions Banner -->
-      <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+      <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 rounded-2xl p-4 sm:p-6 text-white shadow-lg relative overflow-hidden">
         <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div class="space-y-1.5">
             <div class="flex items-center gap-2 flex-wrap">
@@ -631,12 +631,12 @@
     <div id="view-client-detail" class="hidden space-y-6">
       
       <!-- Back Navigation & Top Client Summary Banner -->
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <button onclick="app.showView('clients')" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-slate-900 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
           Back to Clients
         </button>
-        <div class="flex items-center gap-2 no-print">
+        <div class="flex items-center flex-wrap gap-2 no-print">
           <button id="detail-hold-btn" onclick="app.openHoldClientModal()" class="px-3 py-1.5 text-xs font-semibold bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 rounded-lg flex items-center gap-1.5 shadow-sm transition">
             <span>⏸️</span> <span id="detail-hold-btn-text">Put on Hold</span>
           </button>
@@ -652,13 +652,13 @@
       </div>
 
       <!-- Client Profile Header Card -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           
           <!-- Client Identity -->
           <div class="space-y-1">
             <div class="flex items-center gap-3">
-              <h2 id="detail-client-name" class="text-2xl font-bold text-slate-900">Client Name</h2>
+              <h2 id="detail-client-name" class="text-xl sm:text-2xl font-bold text-slate-900">Client Name</h2>
               <span id="detail-client-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active</span>
             </div>
             <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-1">
@@ -682,20 +682,20 @@
           </div>
 
           <!-- Financial Snapshot Numbers -->
-          <div class="grid grid-cols-3 gap-4 border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6 text-center lg:text-right">
+          <div class="grid grid-cols-3 gap-2 sm:gap-4 border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6 text-center lg:text-right">
             <div>
               <p class="text-[11px] font-semibold uppercase text-slate-400">Total Billed</p>
-              <p id="detail-total-billed" class="text-lg font-bold text-slate-800">₹0.00</p>
+              <p id="detail-total-billed" class="text-base sm:text-lg font-bold text-slate-800">₹0.00</p>
               <p class="text-[10px] text-slate-400" id="detail-total-months">0 months</p>
             </div>
             <div>
               <p class="text-[11px] font-semibold uppercase text-slate-400">Total Paid</p>
-              <p id="detail-total-paid" class="text-lg font-bold text-emerald-600">₹0.00</p>
+              <p id="detail-total-paid" class="text-base sm:text-lg font-bold text-emerald-600">₹0.00</p>
               <p class="text-[10px] text-slate-400" id="detail-payment-count">0 payments</p>
             </div>
             <div>
               <p class="text-[11px] font-semibold uppercase text-slate-400">Final Balance</p>
-              <p id="detail-final-balance" class="text-2xl font-black text-red-600">₹0.00</p>
+              <p id="detail-final-balance" class="text-lg sm:text-2xl font-black text-red-600">₹0.00</p>
               <p class="text-[10px] font-semibold" id="detail-balance-status-text">Pending Due</p>
             </div>
           </div>
@@ -703,7 +703,7 @@
         </div>
 
         <!-- Active Hold Notification Banner -->
-        <div id="detail-hold-banner" class="hidden mt-4 pt-3.5 border-t border-amber-200 bg-amber-50/90 -mx-6 -mb-6 p-4 rounded-b-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div id="detail-hold-banner" class="hidden mt-4 pt-3.5 border-t border-amber-200 bg-amber-50/90 -mx-4 sm:-mx-6 -mb-4 sm:-mb-6 p-4 rounded-b-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="flex items-start sm:items-center gap-3">
             <div class="w-9 h-9 rounded-xl bg-amber-200/80 border border-amber-300 text-amber-900 flex items-center justify-center text-lg font-bold shrink-0">
               ⏸️
@@ -731,8 +731,8 @@
         </div>
 
         <!-- Quick Action Bar -->
-        <div class="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2">
+        <div class="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2">
             <button onclick="app.openRecordPaymentModal(app.activeClientId)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-all shadow-sm flex items-center gap-1.5">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
               <span>Record Client Payment (Give Money)</span>
@@ -917,18 +917,49 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==================== MOBILE BOTTOM NAVIGATION BAR ==================== -->
+  <nav id="mobile-bottom-nav" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 md:hidden flex justify-around items-center h-16 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] no-print">
+    <!-- Tab 1: Dashboard -->
+    <button type="button" id="mobile-nav-dashboard" onclick="app.showView('dashboard')" class="flex-1 flex flex-col items-center justify-center py-1 text-blue-700 font-semibold transition">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span class="text-[11px] leading-tight">Dashboard</span>
+    </button>
+    <!-- Tab 2: Clients -->
+    <button type="button" id="mobile-nav-clients" onclick="app.showView('clients')" class="flex-1 flex flex-col items-center justify-center py-1 text-slate-500 font-medium transition relative">
+      <div class="relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span id="mobile-nav-client-count" class="absolute -top-1 -right-2 bg-slate-200 text-slate-700 text-[10px] px-1 rounded-full font-bold">0</span>
+      </div>
+      <span class="text-[11px] leading-tight">Clients</span>
+    </button>
+    <!-- Tab 3: Matrix -->
+    <button type="button" id="mobile-nav-matrix" onclick="app.showView('matrix')" class="flex-1 flex flex-col items-center justify-center py-1 text-slate-500 font-medium transition">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      <span class="text-[11px] leading-tight">Matrix</span>
+    </button>
+    <!-- Tab 4: Supabase -->
+    <button type="button" id="mobile-nav-supabase" onclick="app.openCloudDatabaseModal()" class="flex-1 flex flex-col items-center justify-center py-1 text-slate-500 font-medium transition relative">
+      <div class="relative">
+        <svg class="w-5 h-5 mb-0.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span id="mobile-nav-supabase-status-dot" class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-slate-400" title="Disconnected"></span>
+      </div>
+      <span class="text-[11px] leading-tight">Supabase</span>
+    </button>
+  </nav>
+
   </div> <!-- /#main-app-container -->
 
   <!-- ==================== MODALS ==================== -->
 
   <!-- MODAL 1: ADD CLIENT -->
-  <div id="addClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+  <div id="addClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 flex justify-between items-center shrink-0">
         <h3 class="font-bold text-slate-900 text-base">Add New Client</h3>
-        <button onclick="app.closeModal('addClientModal')" class="text-slate-400 hover:text-slate-600">&times;</button>
+        <button onclick="app.closeModal('addClientModal')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleAddClient(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleAddClient(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         <div>
           <!-- Client Name and Business Name side-by-side -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1084,7 +1115,7 @@
           <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Notes / Service Details</label>
           <textarea id="add-client-notes" rows="2" placeholder="e.g. Monthly maintenance contract, gym membership, retainer..." class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
         </div>
-        <div class="pt-2 flex justify-end gap-2">
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2 shrink-0">
           <button type="button" onclick="app.closeModal('addClientModal')" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg font-medium">Cancel</button>
           <button type="submit" class="px-5 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm">Save Client</button>
         </div>
@@ -1093,16 +1124,16 @@
   </div>
 
   <!-- MODAL 2: RECORD PAYMENT (Subtract from total amount) -->
-  <div id="recordPaymentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-emerald-50 px-6 py-4 border-b border-emerald-100 flex justify-between items-center">
+  <div id="recordPaymentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-emerald-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-emerald-100 flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-emerald-950 text-base">Record Client Payment</h3>
           <p class="text-xs text-emerald-700">Subtracted from the client's cumulative balance</p>
         </div>
-        <button onclick="app.closeModal('recordPaymentModal')" class="text-emerald-500 hover:text-emerald-800">&times;</button>
+        <button onclick="app.closeModal('recordPaymentModal')" class="text-emerald-500 hover:text-emerald-800 text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleRecordPayment(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleRecordPayment(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         
         <div>
           <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Select Client *</label>
@@ -1205,7 +1236,7 @@
           <input type="text" id="payment-note" placeholder="e.g. Part payment given by cash" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
         </div>
 
-        <div class="pt-2 flex justify-end gap-2">
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2 shrink-0">
           <button type="button" onclick="app.closeModal('recordPaymentModal')" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg font-medium">Cancel</button>
           <button type="submit" class="px-5 py-2 text-sm bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold shadow-sm">Save & Deduct Balance</button>
         </div>
@@ -1214,16 +1245,16 @@
   </div>
 
   <!-- MODAL: EDIT PAYMENT TRANSACTION -->
-  <div id="editPaymentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-blue-50 px-6 py-4 border-b border-blue-100 flex justify-between items-center">
+  <div id="editPaymentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-blue-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-blue-100 flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-slate-900 text-base">Edit Payment Transaction</h3>
           <p class="text-xs text-blue-700">Update payment amount, date, method, allocation or notes</p>
         </div>
         <button onclick="app.closeModal('editPaymentModal')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleSaveEditPayment(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveEditPayment(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         <input type="hidden" id="edit-payment-client-id">
         <input type="hidden" id="edit-payment-id">
 
@@ -1300,7 +1331,7 @@
           <input type="text" id="edit-payment-note" placeholder="e.g. Part payment given by cash" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
         </div>
 
-        <div class="pt-2 flex justify-end gap-2">
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2 shrink-0">
           <button type="button" onclick="app.closeModal('editPaymentModal')" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg font-medium">Cancel</button>
           <button type="submit" class="px-5 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm">Save Changes</button>
         </div>
@@ -1309,16 +1340,16 @@
   </div>
 
   <!-- MODAL 3: OVERRIDE MONTHLY PAYMENT (Change fee for a particular month or from this month onwards) -->
-  <div id="overrideMonthModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-indigo-50 px-6 py-4 border-b border-indigo-100 flex justify-between items-center">
+  <div id="overrideMonthModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-indigo-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-indigo-100 flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-indigo-950 text-base">Change Monthly Payment Fee</h3>
           <p class="text-xs text-indigo-700">Change fee for a single month or from this month onwards</p>
         </div>
-        <button onclick="app.closeModal('overrideMonthModal')" class="text-indigo-400 hover:text-indigo-700">&times;</button>
+        <button onclick="app.closeModal('overrideMonthModal')" class="text-indigo-400 hover:text-indigo-700 text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleSaveMonthOverride(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveMonthOverride(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         <input type="hidden" id="override-client-id">
         
         <div>
@@ -1385,7 +1416,7 @@
           <input type="text" id="override-note" placeholder="e.g. Additional work requested, Festival discount, etc." class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none">
         </div>
 
-        <div class="pt-2 flex justify-between items-center">
+        <div class="pt-3 border-t border-slate-100 flex flex-wrap justify-between items-center gap-2 shrink-0">
           <button type="button" id="btn-reset-month-override" onclick="app.handleResetMonthOverride()" class="text-xs text-red-600 hover:text-red-800 font-semibold hidden">
             Reset to Default Fixed Fee
           </button>
@@ -1399,13 +1430,13 @@
   </div>
 
   <!-- MODAL 4: EDIT CLIENT -->
-  <div id="editClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+  <div id="editClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 flex justify-between items-center shrink-0">
         <h3 class="font-bold text-slate-900 text-base">Edit Client Details</h3>
-        <button onclick="app.closeModal('editClientModal')" class="text-slate-400 hover:text-slate-600">&times;</button>
+        <button onclick="app.closeModal('editClientModal')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleSaveEditClient(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveEditClient(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         <input type="hidden" id="edit-client-id">
         <div>
           <!-- Client Name and Business Name side-by-side -->
@@ -1579,7 +1610,7 @@
           <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Notes</label>
           <textarea id="edit-client-notes" rows="2" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
         </div>
-        <div class="pt-2 flex justify-between items-center">
+        <div class="pt-3 border-t border-slate-100 flex flex-wrap justify-between items-center gap-2 shrink-0">
           <button type="button" onclick="app.handleDeleteClient()" class="text-xs text-red-600 hover:text-red-800 font-semibold">
             Delete Client
           </button>
@@ -1593,22 +1624,22 @@
   </div>
 
   <!-- MODAL 4B: HOLD CLIENT / PAUSE BILLING -->
-  <div id="holdClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+  <div id="holdClientModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-6 py-4 text-white flex justify-between items-center">
+      <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 px-4 sm:px-6 py-3.5 sm:py-4 text-white flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-base flex items-center gap-2">
             <span>⏸️</span> <span>Hold Client / Pause Monthly Billing</span>
           </h3>
           <p class="text-xs text-amber-100">Pause fee calculation when client travels abroad or temporarily suspends services</p>
         </div>
-        <button onclick="app.closeModal('holdClientModal')" class="text-white/80 hover:text-white text-lg">&times;</button>
+        <button onclick="app.closeModal('holdClientModal')" class="text-white/80 hover:text-white text-xl font-bold">&times;</button>
       </div>
 
       <!-- Form -->
-      <form onsubmit="app.handleSaveHoldClient(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveHoldClient(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         
         <!-- Target Client Name Display -->
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-between">
@@ -1741,7 +1772,7 @@
         </div>
 
         <!-- Footer Buttons -->
-        <div class="pt-3 border-t border-slate-200 flex justify-end items-center gap-2">
+        <div class="pt-3 border-t border-slate-200 flex justify-end items-center gap-2 shrink-0">
           <button type="button" onclick="app.closeModal('holdClientModal')" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-xl font-medium transition">
             Cancel
           </button>
@@ -1755,11 +1786,11 @@
   </div>
 
   <!-- MODAL 5: PRINTABLE STATEMENT / INVOICE -->
-  <div id="printStatementModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div id="printStatementModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header (No Print) -->
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center no-print">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2 no-print shrink-0">
         <div>
           <h3 class="font-bold text-slate-900 text-base">Client Billing Statement & Monthly Balance</h3>
           <p class="text-xs text-slate-500">Ready to print or save as PDF</p>
@@ -1769,12 +1800,12 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span>Print / Save as PDF</span>
           </button>
-          <button onclick="app.closeModal('printStatementModal')" class="text-slate-400 hover:text-slate-600 text-lg">&times;</button>
+          <button onclick="app.closeModal('printStatementModal')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
         </div>
       </div>
 
       <!-- Printable Area -->
-      <div id="printable-statement-content" class="p-8 overflow-y-auto flex-1 bg-white print-area">
+      <div id="printable-statement-content" class="p-4 sm:p-8 overflow-y-auto flex-1 bg-white print-area">
         <!-- Rendered dynamically -->
       </div>
 
@@ -1782,11 +1813,11 @@
   </div>
 
   <!-- MODAL 5B: PAYMENT TRANSACTION RECEIPT / INVOICE -->
-  <div id="paymentReceiptModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div id="paymentReceiptModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header (No Print) -->
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center no-print">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2 no-print shrink-0">
         <div>
           <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
             <span>🧾</span> <span>Payment Receipt / Voucher</span>
@@ -1807,7 +1838,7 @@
       </div>
 
       <!-- Printable Receipt Area -->
-      <div id="printable-receipt-content" class="p-8 overflow-y-auto flex-1 bg-white print-area">
+      <div id="printable-receipt-content" class="p-4 sm:p-8 overflow-y-auto flex-1 bg-white print-area">
         <!-- Rendered dynamically -->
       </div>
 
@@ -1815,11 +1846,11 @@
   </div>
 
   <!-- MODAL 5C: PRINTABLE PENDING DUES INVOICE / DEMAND NOTE -->
-  <div id="pendingInvoiceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div id="pendingInvoiceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header (No Print) -->
-      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center no-print">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2 no-print shrink-0">
         <div>
           <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
             <span>📄</span> <span>Pending Dues Invoice / Demand Note</span>
@@ -1840,7 +1871,7 @@
       </div>
 
       <!-- Printable Pending Invoice Area -->
-      <div id="printable-pending-invoice-content" class="p-8 overflow-y-auto flex-1 bg-white print-area">
+      <div id="printable-pending-invoice-content" class="p-4 sm:p-8 overflow-y-auto flex-1 bg-white print-area">
         <!-- Rendered dynamically -->
       </div>
 
@@ -1848,13 +1879,13 @@
   </div>
 
   <!-- MODAL 5D: BATCH SEND PENDING DUES INVOICES VIA WHATSAPP -->
-  <div id="batchPendingWhatsAppModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div id="batchPendingWhatsAppModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 px-6 py-4 text-white flex justify-between items-center shrink-0">
+      <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 px-4 sm:px-6 py-3.5 sm:py-4 text-white flex justify-between items-center shrink-0">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shadow-inner">
+          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shadow-inner shrink-0">
             💬
           </div>
           <div>
@@ -1983,18 +2014,18 @@
   </div>
 
   <!-- MODAL 6: EDIT BUSINESS PROFILE -->
-  <div id="editBusinessProfileModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 px-6 py-4 text-white flex justify-between items-center">
+  <div id="editBusinessProfileModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 px-4 sm:px-6 py-3.5 sm:py-4 text-white flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-base flex items-center gap-2">
             <span>🏢</span> <span>Edit Business Profile</span>
           </h3>
           <p class="text-xs text-blue-100">Updates dashboard banner, invoices, and syncs to database</p>
         </div>
-        <button onclick="app.closeModal('editBusinessProfileModal')" class="text-white/80 hover:text-white text-lg">&times;</button>
+        <button onclick="app.closeModal('editBusinessProfileModal')" class="text-white/80 hover:text-white text-xl font-bold">&times;</button>
       </div>
-      <form onsubmit="app.handleSaveBusinessProfile(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveBusinessProfile(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         <div>
           <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Business / Company Name *</label>
           <input type="text" id="business-name-input" required placeholder="e.g. Apex Financial Solutions / Prime Services" class="w-full text-sm px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white font-medium text-slate-900">
@@ -2013,7 +2044,7 @@
             <input type="email" id="business-email-input" placeholder="billing@example.com" class="w-full text-sm px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-slate-800">
           </div>
         </div>
-        <div class="pt-2 flex items-center justify-between">
+        <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 shrink-0">
           <span class="text-[11px] text-emerald-700 font-medium flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Auto-syncs to database
           </span>
@@ -2027,22 +2058,22 @@
   </div>
 
   <!-- MODAL 7: CLOUD DATABASE CONNECTION (Supabase & BigRock) -->
-  <div id="cloudDatabaseModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+  <div id="cloudDatabaseModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 px-6 py-4 text-white flex justify-between items-center">
+      <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 px-4 sm:px-6 py-3.5 sm:py-4 text-white flex justify-between items-center shrink-0">
         <div>
           <h3 class="font-bold text-base flex items-center gap-2">
             <span>⚡</span> <span>Cloud Database Connection</span>
           </h3>
           <p class="text-xs text-emerald-100">Sync GitHub Pages directly with Supabase or BigRock</p>
         </div>
-        <button onclick="app.closeModal('cloudDatabaseModal')" class="text-white/80 hover:text-white text-lg">&times;</button>
+        <button onclick="app.closeModal('cloudDatabaseModal')" class="text-white/80 hover:text-white text-xl font-bold">&times;</button>
       </div>
 
       <!-- Provider Tabs & Connection State -->
-      <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 pt-3">
+      <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 sm:px-6 pt-3 shrink-0">
         <div class="flex gap-2">
           <button type="button" id="tab-db-supabase" onclick="app.setDbProviderTab('supabase')" class="px-4 py-2 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 transition flex items-center gap-1.5">
             <span>⚡</span> <span>Supabase</span>
@@ -2057,7 +2088,7 @@
         </div>
       </div>
 
-      <form onsubmit="app.handleSaveCloudDb(event)" class="p-6 space-y-4">
+      <form onsubmit="app.handleSaveCloudDb(event)" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
         
         <!-- PANEL 1: SUPABASE -->
         <div id="panel-db-supabase" class="space-y-3.5">
@@ -2111,7 +2142,7 @@
           <span id="cloud-test-text"></span>
         </div>
 
-        <div class="pt-2 flex flex-wrap justify-between items-center gap-2">
+        <div class="pt-3 border-t border-slate-100 flex flex-wrap justify-between items-center gap-2 shrink-0">
           <div class="flex items-center gap-2">
             <button type="button" onclick="app.testCloudDbConnection()" id="cloud-test-btn" class="px-3.5 py-2 text-xs font-bold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-lg transition flex items-center gap-1.5">
               <span>⚡ Test Connection</span>
@@ -2138,6 +2169,6 @@
   </div>
 
   <!-- Application Logic Scripts -->
-  <script src="app.js?v=3.11"></script>
+  <script src="app.js?v=3.12"></script>
 </body>
 </html>

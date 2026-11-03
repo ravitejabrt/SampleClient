@@ -915,11 +915,16 @@ WHERE id = 'main_store';`;
   function updateSupabaseUiState() {
     const isConn = Boolean(state.isSupabaseConnected && isSupabaseConfigured());
 
-    // 1. Navigation status dot
+    // 1. Navigation status dot (Desktop & Mobile)
     const navDot = document.getElementById('nav-supabase-status-dot');
     if (navDot) {
       navDot.className = `w-2 h-2 rounded-full ${isConn ? 'bg-emerald-500 shadow-xs' : 'bg-slate-400'}`;
       navDot.title = isConn ? 'Connected to Supabase' : 'Disconnected (Local Mode)';
+    }
+    const mobNavDot = document.getElementById('mobile-nav-supabase-status-dot');
+    if (mobNavDot) {
+      mobNavDot.className = `absolute -top-0.5 -right-1 w-2 h-2 rounded-full ${isConn ? 'bg-emerald-500 shadow-xs' : 'bg-slate-400'}`;
+      mobNavDot.title = isConn ? 'Connected to Supabase' : 'Disconnected (Local Mode)';
     }
 
     // 2. Disconnect button in modal
@@ -1489,6 +1494,28 @@ WHERE id = 'main_store';`;
         'px-3 py-2 rounded-lg text-sm font-medium transition-colors text-blue-700 bg-blue-50 hover:bg-blue-100 flex items-center space-x-1.5';
     }
 
+    // Update mobile bottom nav active states
+    const mobNavDashboard = document.getElementById('mobile-nav-dashboard');
+    const mobNavClients = document.getElementById('mobile-nav-clients');
+    const mobNavMatrix = document.getElementById('mobile-nav-matrix');
+
+    [mobNavDashboard, mobNavClients, mobNavMatrix].forEach(nav => {
+      if (!nav) return;
+      nav.className =
+        'flex-1 flex flex-col items-center justify-center py-1 text-slate-500 font-medium transition';
+    });
+
+    if (viewName === 'dashboard' && mobNavDashboard) {
+      mobNavDashboard.className =
+        'flex-1 flex flex-col items-center justify-center py-1 text-blue-700 font-semibold transition';
+    } else if ((viewName === 'clients' || viewName === 'client-detail') && mobNavClients) {
+      mobNavClients.className =
+        'flex-1 flex flex-col items-center justify-center py-1 text-blue-700 font-semibold transition';
+    } else if (viewName === 'matrix' && mobNavMatrix) {
+      mobNavMatrix.className =
+        'flex-1 flex flex-col items-center justify-center py-1 text-blue-700 font-semibold transition';
+    }
+
     if (viewName === 'dashboard') renderDashboard();
     if (viewName === 'clients') renderClientsList();
     if (viewName === 'matrix') renderMatrixView();
@@ -1779,6 +1806,8 @@ WHERE id = 'main_store';`;
     if (statCollected) statCollected.textContent = formatCurrency(totalPaidAll);
     if (statClients) statClients.textContent = state.clients.length;
     if (navClientCount) navClientCount.textContent = state.clients.length;
+    const mobNavClientCount = document.getElementById('mobile-nav-client-count');
+    if (mobNavClientCount) mobNavClientCount.textContent = state.clients.length;
 
     // Filter indicator badge
     if (filterIndicator) {

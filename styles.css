@@ -65,9 +65,56 @@
   animation: fadeIn 0.15s ease-out forwards;
 }
 
+/* ==========================================================================
+   Cross-Device Compatibility & Responsive Touch Optimizations
+   ========================================================================== */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth momentum touch scrolling for tables and modal bodies */
+.overflow-x-auto,
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent auto-zooming on focus in iOS Safari when font size < 16px */
+@media screen and (max-width: 640px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  input[type="month"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Sticky column shadow for wide tables on mobile devices */
+.shadow-r {
+  box-shadow: 3px 0 6px -2px rgba(0, 0, 0, 0.08);
+}
+
+/* Touch-friendly interactive targets on mobile */
+@media screen and (max-width: 768px) {
+  button, select, input {
+    touch-action: manipulation;
+  }
+}
+
+/* Safe area support for iOS notches on bottom nav */
+#mobile-bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 /* PRINT MEDIA STYLES - Crucial for Clean Professional Statements & Invoices */
 @media print {
-  /* Hide all app chrome and background views */
+  /* Hide all app chrome, navigation and background views */
   body {
     background-color: #ffffff !important;
     color: #000000 !important;
@@ -78,6 +125,7 @@
 
   .no-print,
   #login-screen,
+  #mobile-bottom-nav,
   header,
   footer,
   #view-dashboard,
@@ -90,6 +138,7 @@
   #overrideMonthModal,
   #editClientModal,
   #holdClientModal,
+  #batchPendingWhatsAppModal,
   #editBusinessProfileModal,
   #cloudDatabaseModal,
   .modal-backdrop,
